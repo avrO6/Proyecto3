@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+Imports System.Data.OleDb
 
 
 Public Class Persona
@@ -52,14 +52,19 @@ Public Class Persona
         Me.Gestor.update(Me)
     End Sub
 
-    Function leerpersona(text As String)
-        If NDNI1 IsNot Nothing Then
-            MsgBox("La persona ya existe")
-        End If
-    End Function
-
     Sub eliminarPersona()
         Me.Gestor.delete(Me)
     End Sub
+
+    Sub eliminarBBDD()
+        Me.Gestor.deleteAll(Me)
+    End Sub
+
+    Function leerPersona(text As String)
+        If mDNI IsNot Nothing Then
+            MsgBox("La asignatura ya existe ya existe")
+        End If
+        Return True
+    End Function
 
 End Class
