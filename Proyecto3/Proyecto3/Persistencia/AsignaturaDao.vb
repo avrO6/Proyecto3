@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+Imports System.Data.OleDb
 Imports System.Data.SqlClient
 
 Public Class AsignaturaDao
@@ -38,7 +38,7 @@ Public Class AsignaturaDao
     'Borrar la persona y Asignatura elegida de la base de datos'
     Sub delete(ByVal noAsignatura As Asignatura)
         Agente = AgenteBD.getInstancia()
-        Dim aSQL As String = "DELETE * FROM ASIGNATURA WHERE ASIGNATURA='" + noAsignatura.ID + "';"
+        Dim aSQL As String = "DELETE * FROM ASIGNATURA WHERE ID='" + noAsignatura.ID + "';"
         Agente.delete(aSQL)
     End Sub
 
@@ -50,6 +50,14 @@ Public Class AsignaturaDao
     End Sub
 
     Friend Sub readAll()
-        Throw New NotImplementedException()
+        Agente = AgenteBD.getInstancia
+        Dim aSQL As String = "SELECT NOMBRE FROM ASIGNATURA;"
+        Dim command As New SqlCommand()
+        Dim reader As SqlDataReader = command.ExecuteReader()
+        While reader.Read()
+            Dim elemento As String = reader("NOMBRE").ToString()
+            Form1.Lista_Personas.Items.Add(elemento)
+            reader.Close()
+        End While
     End Sub
 End Class
