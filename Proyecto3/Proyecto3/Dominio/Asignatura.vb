@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+Imports System.Data.OleDb
 
 Public Class Asignatura
 
@@ -69,13 +69,19 @@ Public Class Asignatura
     End Function
 
     ' Metodo insertar Asignatura '
-    Sub insertarPersona()
+    Sub insertarAsignatura()
         Me.Gestor.insert(Me)
     End Sub
 
     ' Metodo modificar Asignatura ' 
-    Sub modificarPersona()
+    Sub modificarAsignatura()
         Me.Gestor.update(Me)
     End Sub
+    Function leerAsignatura(text As String)
+        If ID IsNot Nothing Then
+            MsgBox("La asignatura ya existe ya existe")
+        End If
+        Return True
+    End Function
 
 End Class
