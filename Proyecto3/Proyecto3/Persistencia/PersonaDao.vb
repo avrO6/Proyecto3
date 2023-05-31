@@ -1,4 +1,4 @@
-﻿Imports System.Data.OleDb
+Imports System.Data.OleDb
 Imports System.Data.SqlClient
 
 Public Class PersonaDao
@@ -22,7 +22,7 @@ Public Class PersonaDao
     ' Iserta una persona y Asignaturas en la base de datos ' 
     Sub insert(ByVal newPersona As Persona)
         Agente = AgenteBD.getInstancia()
-        Dim pSQL As String = "INSERT INTO PERSONAS VALUE ('" + newPersona.NDNI1 + " AND " + newPersona.NOM + "');"   'Cabiar line de insert'
+        Dim pSQL As String = "INSERT INTO PERSONA VALUES ('" + newPersona.NDNI1 + "', '" + newPersona.NOM + "');"   'Cabiar line de insert'
         Agente.create(pSQL)
 
     End Sub
@@ -49,6 +49,14 @@ Public Class PersonaDao
     End Sub
 
     Friend Sub readAll()
-        Throw New NotImplementedException()
+        Agente = AgenteBD.getInstancia
+        Dim aSQL As String = "SELECT NOMBRE FROM PERSONA;"
+        Dim command As New SqlCommand()
+        Dim reader As SqlDataReader = command.ExecuteReader()
+        While reader.Read()
+            Dim elemento As String = reader("NOMBRE").ToString()
+            Form1.Lista_Personas.Items.Add(elemento)
+            reader.Close()
+        End While
     End Sub
 End Class
